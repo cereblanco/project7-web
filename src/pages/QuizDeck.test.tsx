@@ -2,11 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { render, screen, within } from "@testing-library/react";
 
-import QuizDeck, { QuizDeckProps } from "./QuizDeck";
+import QuizDeck from "./QuizDeck";
+import { QuizDeckProps } from "../types";
 
 describe("QuizDeck", () => {
   const testProps: QuizDeckProps = {
-    question: "What comes first?",
+    key: 1,
+    question: "Which came first?",
     choices: ["Chicken", "Egg"],
     answer: "Chicken",
   };
@@ -21,13 +23,15 @@ describe("QuizDeck", () => {
 
   it("should render correctly", () => {
     render(testComponent);
-    expect(screen.getByText("What comes first?")).toBeInTheDocument();
-    const listItems = screen.getAllByRole('listitem');
+    expect(screen.getByText("Which came first?")).toBeInTheDocument();
+    const listItems = screen.getAllByRole("listitem");
     expect(listItems).toHaveLength(testProps.choices.length);
     listItems.forEach((item, index) => {
-        const { getByText } = within(item)
-        expect(getByText(testProps.choices[index])).toBeInTheDocument();
+      const { getByText } = within(item);
+      expect(getByText(testProps.choices[index])).toBeInTheDocument();
     });
-    expect(screen.getByRole("heading", {name: "Chicken"})).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Chicken" })
+    ).toBeInTheDocument();
   });
 });

@@ -1,10 +1,6 @@
 import React from "react";
 
-export type QuizDeckProps = {
-  question: string;
-  choices: string[];
-  answer: string;
-};
+import { QuizDeckProps } from "../types";
 
 const QuizDeck: React.FC<QuizDeckProps> = ({
   question,
