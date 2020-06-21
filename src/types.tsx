@@ -3,4 +3,6 @@ export type QuestionType = {
   question: string;
   choices: string[];
   answer: string;
-} | null;
+};
+
+export type QuestionApiResponse = QuestionType | null;

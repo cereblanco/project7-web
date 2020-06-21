@@ -1,4 +1,5 @@
 import questions from "./questions";
+import { QuestionApiResponse } from "../types";
 
 type QuestionType = {
   id: number;
@@ -8,13 +9,15 @@ type QuestionType = {
 };
 
 //TODO: Replace this with real backend
-export function getQuestion(index: number): QuestionType | null {
+function getQuestion(index: number): QuestionApiResponse {
   if (index <= questions.length) {
     return questions[index];
   }
   return null;
 }
 
-export function getTotalNumberOfQuestions(): number {
+function getTotalNumberOfQuestions(): number {
   return questions.length;
 }
+
+export default { getQuestion, getTotalNumberOfQuestions };
