@@ -1,29 +1,42 @@
 import React, { useState, useEffect } from "react";
 
-import { QuestionType } from "../types";
-import { getQuestion, getTotalNumberOfQuestions } from "../api/qapi";
+import { QuestionApiResponse } from "../types";
+import qapi from "../api/qapi";
 import Question from "../components/Question";
 
-const QuestionDeck: React.FC = () => {
-  const total = getTotalNumberOfQuestions();
+export type QuestionDeckProps = {
+  question: string;
+  choices: string[];
+  answer: string;
+};
+
+const QuestionDeck: React.FC<QuestionDeckProps> = () => {
+  const [total, setTotal] = useState<number>(0);
   const [count, setCounter] = useState<number>(0);
-  const [question, setQuestion] = useState<QuestionType>(null);
+  const [question, setQuestion] = useState<QuestionApiResponse>(null);
 
   useEffect(() => {
     function fetchQuestion(): void {
-      const question = getQuestion(0);
+      const question = qapi.getQuestion(0);
       setQuestion(question);
     }
     fetchQuestion();
+  }, []);
+
+  useEffect(() => {
+    async function fetchTotalNumberOfQuestion(): Promise<void> {
+      const total = qapi.getTotalNumberOfQuestions();
+      setTotal(total);
+    }
+    fetchTotalNumberOfQuestion();
   }, []);
 
   const onNextQuestion = (): void => {
     if (count < total - 1) {
       const counter = count + 1;
       setCounter(counter);
-      setQuestion(getQuestion(counter));
+      setQuestion(qapi.getQuestion(counter));
     }
-    setQuestion(null);
   };
 
   return (
