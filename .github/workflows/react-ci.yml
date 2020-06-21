@@ -22,6 +22,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '13.10'
+
     - name: Install yarn and run tests
       run: |
         yarn
