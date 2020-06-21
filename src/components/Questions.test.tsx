@@ -14,12 +14,14 @@ describe("Question", () => {
     question: "Who's the Philippines' national hero?",
     choices: ["Jose Rizal", "Andres Bonifacio", "Grabriela Silang"],
     answer: "Jose Rizal",
-    onNextQuestion: () => {},
+    onNextQuestion: jest.fn(),
   };
 
   beforeEach(() => {
     mockOnNextQuestion = jest.fn();
-    testComponent = <Question {...testProps} onNextQuestion={mockOnNextQuestion} />;
+    testComponent = (
+      <Question {...testProps} onNextQuestion={mockOnNextQuestion} />
+    );
   });
 
   it("renders without crashing", () => {
@@ -73,6 +75,4 @@ describe("Question", () => {
     userEvent.click(screen.getByRole("button", { name: "Next" }));
     expect(mockOnNextQuestion).toHaveBeenCalledTimes(1);
   });
-
-
 });
