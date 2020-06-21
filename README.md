@@ -1,3 +1,10 @@
+# About Project7-Web
+
+Features:
+
+- multiple choice quiz
+- TODO: slide presentation 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
