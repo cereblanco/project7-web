@@ -47,7 +47,7 @@ describe("QuestionDeck", () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it("shows questions from api", () => {
+  it("shows first question from api", () => {
     render(testComponent);
     expect(getQuestionStub).toHaveBeenCalledTimes(1);
     expect(getTotalNumberOfQuestionsStub).toHaveBeenCalledTimes(1);
@@ -62,11 +62,13 @@ describe("QuestionDeck", () => {
     expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
   });
 
-  it("gets next item", () => {
+  it("gets and displays next item", () => {
     render(testComponent);
     userEvent.click(screen.getByRole("button", { name: "Submit" }));
     getQuestionStub.mockReturnValueOnce(questions[1]);
     userEvent.click(screen.getByRole("button", { name: "Next" }));
+    expect(getQuestionStub).toHaveBeenCalledTimes(2);
+
     const listItems = screen.getAllByRole("listitem");
     expect(listItems).toHaveLength(3);
     listItems.forEach((item, index) => {
