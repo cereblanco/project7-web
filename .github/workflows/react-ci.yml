@@ -23,9 +23,10 @@ jobs:
       with:
         node-version: '13.10'
 
-    - name: Install yarn and run tests
+    - name: yarn install, lint, and test
       run: |
-        yarn
+        yarn install --frozen-lockfile
+        yarn lint
         yarn test
       env:
         CI: true
