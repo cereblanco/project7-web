@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { QuestionType } from "../types";
 import { getQuestion, getTotalNumberOfQuestions } from "../api/qapi";
-import Question from "./Question";
+import Question from "../components/Question";
 
 const QuestionDeck: React.FC = () => {
   const total = getTotalNumberOfQuestions();
