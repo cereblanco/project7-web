@@ -1,11 +1,11 @@
 <!-- 
 Thank you for your interest in this project. Bugs filed and PRs submitted are appreciated!
 
-Please make sure that you are familiar with and follow the [Code of Conduct](https://github.com/cereblanco/project7-web/blob/master/CODE_OF_CONDUCT.md) of
-this project.
+Please make sure that you are familiar with and follow the Code of Conduct of this project
+which can be found at https://github.com/cereblanco/project7-web/blob/master/CODE_OF_CONDUCT.md 
 
-Also, please make sure you're familiar with and follow the instructions in the
-[contributing guidelines](https://github.com/cereblanco/project7-web/blob/master/CONTRIBUTION.md))
+Also, please make sure you're familiar with and follow the instructions in the contributing guidelines
+which can  be found at https://github.com/cereblanco/project7-web/blob/master/CONTRIBUTION.md
 
 -->
 
