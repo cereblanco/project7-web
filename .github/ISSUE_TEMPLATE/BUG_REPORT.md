@@ -31,20 +31,20 @@ A clear and concise description of what you did.
 Include code snippets/a link to online editor like CodeSandbox/CLI commands/execution instructions/configurations/anything
 -->
 
-What happened:
+What happened(Unexpected behavior):
 
 <!-- 
 Describe the unexpected behavior that has happened.
 Include complete error messages/screenshots/anything
 -->
 
-Problem description:
+What should have happened (Expected behavior):
 
-<!-- Describe why the current behavior is a problem. What should be the behavior? -->
+<!-- Describe why the current behavior is a problem. What should be the correct behavior? -->
 
 Suggested solution:
 
 <!--
-It's ok if you don't have a suggested solution, but it would be helpful if you could
-do a little digging to come up with some suggestions of how to solve and improve things.
+It's okay if you don't have a suggested solution, but it would be helpful if you could
+do a little digging to come up with some suggestions on how to solve and improve things.
 -->
