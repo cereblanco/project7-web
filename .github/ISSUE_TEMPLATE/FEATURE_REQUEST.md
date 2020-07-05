@@ -5,7 +5,7 @@ about: I have a suggestion (and might want to implement myself 🙂)!
 ---
 
 <!-- 
-Thanks for your interest in this project. Bugs filed and PRs submitted are appreciated!
+Thank you for your interest in this project. Bugs filed and PRs submitted are appreciated!
 
 Please make sure that you are familiar with and follow the [Code of Conduct](https://github.com/cereblanco/project7-web/blob/master/CODE_OF_CONDUCT.md) of this project.
 
