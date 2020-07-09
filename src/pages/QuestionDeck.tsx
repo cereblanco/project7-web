@@ -4,13 +4,7 @@ import { QuestionApiResponse } from "../types";
 import qapi from "../api/qapi";
 import Question from "../components/Question";
 
-export type QuestionDeckProps = {
-  question: string;
-  choices: string[];
-  answer: string;
-};
-
-const QuestionDeck: React.FC<QuestionDeckProps> = () => {
+const QuestionDeck: React.FC = () => {
   const [total, setTotal] = useState<number>(0);
   const [count, setCounter] = useState<number>(0);
   const [question, setQuestion] = useState<QuestionApiResponse>(null);

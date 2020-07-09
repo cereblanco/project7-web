@@ -35,10 +35,7 @@ describe("QuestionDeck", () => {
       .spyOn(qapi, "getTotalNumberOfQuestions")
       .mockReturnValue(questions.length);
 
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const { id, ...questionProps } = questions[0];
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    testComponent = <QuestionDeck {...questionProps} />;
+    testComponent = <QuestionDeck />;
   });
 
   it("renders without crashing", () => {
