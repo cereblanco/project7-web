@@ -7,9 +7,8 @@ import Answer, { AnswerProps } from "./Answer";
 describe("Answer", () => {
   let testComponent: React.ReactElement;
   const testProps: AnswerProps = {
-    answer: "Correct Answer!",
-    showAnswer: true,
-    isCorrect: true,
+    text: "Correct Answer!",
+    visible: true,
   };
 
   beforeEach(() => {
@@ -22,8 +21,13 @@ describe("Answer", () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it("renders correct answer", () => {
+  it("renders the answer", () => {
     render(testComponent);
     expect(screen.getByText("Correct Answer!")).toBeInTheDocument();
+  });
+
+  it("hides the answer", () => {
+    render(<Answer text="Correct Answer!" visible={false} />);
+    expect(screen.queryByText("Correct Answer!")).not.toBeInTheDocument();
   });
 });

@@ -1,25 +1,18 @@
 import React from "react";
 
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Box, Container } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-import GlobalStyle from "./GlobalStyle";
 import QuestionDeck from "./pages/QuestionDeck";
 
 const App: React.FC = () => {
   return (
-    <>
-      <GlobalStyle />
-
-      <Container fluid>
-        <Row className="p-4">
-          <Col>
-            <Card className="card-block align-middle">
-              <QuestionDeck />
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container maxWidth="sm">
+      <CssBaseline />
+      <Box my={10}>
+        <QuestionDeck />
+      </Box>
+    </Container>
   );
 };
 

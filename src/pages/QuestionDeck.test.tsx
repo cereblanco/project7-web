@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { QuestionType } from "../types";
@@ -49,28 +49,16 @@ describe("QuestionDeck", () => {
     expect(getQuestionStub).toHaveBeenCalledTimes(1);
     expect(getTotalNumberOfQuestionsStub).toHaveBeenCalledTimes(1);
 
-    expect(screen.queryByText("Question 1")).toBeInTheDocument();
-    const listItems = screen.getAllByRole("listitem");
-    expect(listItems).toHaveLength(3);
-    listItems.forEach((item, index) => {
-      const { getByText } = within(item);
-      expect(getByText(questions[0].choices[index])).toBeInTheDocument();
-    });
-    expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+    expect(screen.getByText("1 / 2")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "submit" })).toBeInTheDocument();
   });
 
-  it("gets and displays next item", () => {
+  it("retrieves and displays next item", () => {
     render(testComponent);
-    userEvent.click(screen.getByRole("button", { name: "Submit" }));
+    userEvent.click(screen.getByRole("button", { name: "submit" }));
     getQuestionStub.mockReturnValueOnce(questions[1]);
-    userEvent.click(screen.getByRole("button", { name: "Next" }));
+    userEvent.click(screen.getByRole("button", { name: "next" }));
     expect(getQuestionStub).toHaveBeenCalledTimes(2);
-
-    const listItems = screen.getAllByRole("listitem");
-    expect(listItems).toHaveLength(3);
-    listItems.forEach((item, index) => {
-      const { getByText } = within(item);
-      expect(getByText(questions[1].choices[index])).toBeInTheDocument();
-    });
+    expect(screen.getByText("2 / 2")).toBeInTheDocument();
   });
 });

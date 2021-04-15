@@ -1,20 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Choice, { ChoiceProps } from "./Choice";
+import Choices, { ChoicesProps } from "./Choices";
 
-describe("Choice", () => {
+describe("Choices", () => {
   let testComponent: React.ReactElement;
-  const testProps: ChoiceProps = {
-    key: "1",
-    value: "Choice #1",
-    isChecked: true,
-    disabled: false,
+  const testProps: ChoicesProps = {
+    choices: ["Jose Rizal", "Andres Bonifacio", "Grabriela Silang"],
     onChange: jest.fn(),
   };
 
   beforeEach(() => {
-    testComponent = <Choice {...testProps} />;
+    testComponent = <Choices {...testProps} />;
   });
 
   it("renders without crashing", () => {
