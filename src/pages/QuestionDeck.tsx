@@ -32,8 +32,8 @@ const QuestionDeck: React.FC = () => {
   }, []);
 
   const onNextQuestion = (): void => {
-    if (count === total - 1 ) {
-        setIsCompleted(true);
+    if (count === total - 1) {
+      setIsCompleted(true);
     }
     const counter = count + 1;
     setCounter(counter);
@@ -41,28 +41,35 @@ const QuestionDeck: React.FC = () => {
   };
 
   const onSubmitQuestion = (increment: number): void => {
-    if (count <= total - 1 ) {
-      setScore(score + increment)
+    if (count <= total - 1) {
+      setScore(score + increment);
     }
   };
 
   if (isCompleted) {
-    return <Result score={score} total={total} />
+    return <Result score={score} total={total} />;
   }
 
   return (
-      <Paper>
-        <Box height="80vh" padding={4}>
-            <Box textAlign="right">
-              <Typography variant="h4"> {count + 1} / {total} </Typography>
-            </Box>
-            <Box height="75%">
-              {question ? (
-                <Question {...question} onNextQuestion={onNextQuestion} onSubmitQuestion={onSubmitQuestion} />
-              ) : null}
-            </Box>
+    <Paper>
+      <Box height="80vh" padding={4}>
+        <Box textAlign="right">
+          <Typography variant="h4">
+            {" "}
+            {count + 1} / {total}{" "}
+          </Typography>
         </Box>
-      </Paper>
+        <Box height="75%">
+          {question ? (
+            <Question
+              {...question}
+              onNextQuestion={onNextQuestion}
+              onSubmitQuestion={onSubmitQuestion}
+            />
+          ) : null}
+        </Box>
+      </Box>
+    </Paper>
   );
 };
 

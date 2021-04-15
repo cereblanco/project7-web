@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Question, { QuestionProps } from "./Question";
 
 describe("Question", () => {
   let testComponent: React.ReactElement;
-  let mockOnNextQuestion: jest.Mock;
+  let mockOnNext: jest.Mock;
+  let mockOnSubmit: jest.Mock;
 
   const testProps: QuestionProps = {
     id: 1,
@@ -15,12 +16,18 @@ describe("Question", () => {
     choices: ["Jose Rizal", "Andres Bonifacio", "Grabriela Silang"],
     answer: "Jose Rizal",
     onNextQuestion: jest.fn(),
+    onSubmitQuestion: jest.fn(),
   };
 
   beforeEach(() => {
-    mockOnNextQuestion = jest.fn();
+    mockOnNext = jest.fn();
+    mockOnSubmit = jest.fn();
     testComponent = (
-      <Question {...testProps} onNextQuestion={mockOnNextQuestion} />
+      <Question
+        {...testProps}
+        onNextQuestion={mockOnNext}
+        onSubmitQuestion={mockOnSubmit}
+      />
     );
   });
 
@@ -33,46 +40,80 @@ describe("Question", () => {
   it("renders correct question and the multiple choices", () => {
     render(testComponent);
     expect(
-      screen.getByText("Who's the Philippines' national hero?")
+      screen.getByRole("heading", {
+        name: "Who's the Philippines' national hero?",
+      })
     ).toBeInTheDocument();
-    const listItems = screen.getAllByRole("listitem");
-    expect(listItems).toHaveLength(testProps.choices.length);
-    listItems.forEach((item, index) => {
-      const { getByText } = within(item);
-      expect(getByText(testProps.choices[index])).toBeInTheDocument();
+    const radios = screen.getAllByRole("radio");
+    expect(radios).toHaveLength(testProps.choices.length);
+    testProps.choices.forEach((choice) => {
+      expect(screen.getByText(choice)).toBeInTheDocument();
     });
-    expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+    expect(screen.getByText("Submit")).toBeInTheDocument();
   });
 
-  it("shows answer and next button, and hides submit button on submit", () => {
+  it("disables choices when clicking submit button", () => {
     render(testComponent);
     const selectOne = screen.getByRole("radio", { name: "Andres Bonifacio" });
     userEvent.click(selectOne);
     expect(selectOne).toBeChecked();
 
-    expect(
-      screen.queryByRole("button", { name: "Next" })
-    ).not.toBeInTheDocument();
-    userEvent.click(screen.getByRole("button", { name: "Submit" }));
-    const listItems = screen.getAllByRole("listitem");
-    listItems.forEach((item, index) => {
-      const { getByLabelText } = within(item);
-      expect(getByLabelText(testProps.choices[index])).toBeDisabled();
+    expect(screen.queryByText("Next")).not.toBeInTheDocument();
+    userEvent.click(screen.getByRole("button"));
+    const radios = screen.getAllByRole("radio");
+
+    // disabled choices
+    radios.forEach((choice) => {
+      expect(choice).toBeDisabled();
     });
-    expect(
-      screen.queryByRole("button", { name: "Submit" })
-    ).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Next" })).toBeInTheDocument();
+
+    expect(mockOnSubmit).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows next button and displays answer when hitting submit button", () => {
+    render(testComponent);
+    // selects a choice
+    const selectOne = screen.getByRole("radio", { name: "Andres Bonifacio" });
+    userEvent.click(selectOne);
+    expect(selectOne).toBeChecked();
+
+    // submits the choice
+    userEvent.click(screen.getByRole("button", { name: "submit" }));
+
+    // shows correct answer
+    expect(mockOnSubmit).toHaveBeenCalled();
     expect(
       screen.getByRole("heading", { name: "Jose Rizal" })
     ).toBeInTheDocument();
-    expect(mockOnNextQuestion).not.toHaveBeenCalled();
+
+    // hides submit button
+    expect(
+      screen.queryByRole("button", { name: "submit" })
+    ).not.toBeInTheDocument();
+
+    // shows next button
+    expect(screen.getByRole("button", { name: "next" })).toBeInTheDocument();
+
+    // does not move to next question yet
+    expect(mockOnNext).not.toHaveBeenCalled();
   });
 
-  it("calls onNextQuestion on next button click", () => {
+  it("calls onNextQuestion when hitting next button", () => {
     render(testComponent);
-    userEvent.click(screen.getByRole("button", { name: "Submit" }));
-    userEvent.click(screen.getByRole("button", { name: "Next" }));
-    expect(mockOnNextQuestion).toHaveBeenCalledTimes(1);
+    // selects a choice
+    const selectOne = screen.getByRole("radio", { name: "Andres Bonifacio" });
+    userEvent.click(selectOne);
+    expect(selectOne).toBeChecked();
+
+    // submits the choice
+    userEvent.click(screen.getByRole("button", { name: "submit" }));
+
+    // shows next button
+    const nextButton = screen.getByRole("button", { name: "next" });
+    expect(nextButton).toBeInTheDocument();
+
+    // calls next question
+    userEvent.click(nextButton);
+    expect(mockOnNext).toHaveBeenCalledTimes(1);
   });
 });

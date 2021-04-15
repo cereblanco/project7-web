@@ -4,17 +4,17 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
-type ChoiceProps = {
+export type ChoicesProps = {
   choices: ReadonlyArray<string>;
   onChange: (value: string) => void;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
-const Choices: React.FC<ChoiceProps> = ({
+const Choices: React.FC<ChoicesProps> = ({
   choices,
   onChange,
   disabled,
-}: ChoiceProps) => {
+}: ChoicesProps) => {
   const [value, setValue] = React.useState("");
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {

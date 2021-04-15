@@ -3,16 +3,16 @@ import React from "react";
 import { Box, Typography } from "@material-ui/core";
 
 export type AnswerProps = {
-  answer: string;
+  text: string;
   visible: boolean;
 };
 
-const Answer: React.FC<AnswerProps> = ({ answer, visible }: AnswerProps) => {
+const Answer: React.FC<AnswerProps> = ({ text, visible }: AnswerProps) => {
   if (!visible) return null;
   return (
     <Box>
       <Typography variant="subtitle1">ANSWER</Typography>
-      <Typography variant="h6" >{answer}</Typography>
+      <Typography variant="h6">{text}</Typography>
     </Box>
   );
 };

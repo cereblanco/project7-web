@@ -71,15 +71,24 @@ const Question: React.FC<QuestionProps> = ({
       <Grid>
         <Grid container>
           <Grid item xs={8}>
-            <Choices choices={choices} onChange={onChange} disabled={!isActive} />
+            <Choices
+              choices={choices}
+              onChange={onChange}
+              disabled={!isActive}
+            />
           </Grid>
           <Grid item xs={4}>
             <Cheers positive={isCorrect} visible={!isActive} />
-            <Answer answer={answer} visible={!isActive && !isCorrect} />
+            <Answer text={answer} visible={!isActive && !isCorrect} />
           </Grid>
         </Grid>
       </Grid>
-      <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+      <Grid
+        container
+        alignItems="flex-start"
+        justify="flex-end"
+        direction="row"
+      >
         <Box marginTop={4}>{activeBtn}</Box>
       </Grid>
     </>
