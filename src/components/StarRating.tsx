@@ -4,7 +4,7 @@ import { Box } from "@material-ui/core";
 
 import { Star, StarHalf, StarOutlined } from "@material-ui/icons";
 
-export type ResultProps = {
+export type StarRatingProps = {
   percentage: number;
   totalStars: number;
 };
@@ -16,8 +16,9 @@ function renderFullStars(length: number): React.ReactElement | null {
       {" "}
       {Array(length)
         .fill(null)
-        .map((index) => (
+        .map((_, index) => (
           <Star
+            aria-label="full-star"
             style={{ color: "orange" }}
             fontSize="large"
             key={`full-star-${index}`}
@@ -34,8 +35,9 @@ function renderHalfStars(length: number): React.ReactElement | null {
       {" "}
       {Array(length)
         .fill(null)
-        .map((index) => (
+        .map((_, index) => (
           <StarHalf
+            aria-label="half-star"
             style={{ color: "orange" }}
             color="primary"
             key={`half-star-${index}`}
@@ -52,23 +54,28 @@ function renderEmptyStars(length: number): React.ReactElement | null {
       {" "}
       {Array(length)
         .fill(null)
-        .map((index) => (
-          <StarOutlined style={{ color: "gray" }} key={`empty-star-${index}`} />
+        .map((_, index) => (
+          <StarOutlined
+            aria-label="empty-star"
+            style={{ color: "gray" }}
+            key={`empty-star-${index}`}
+          />
         ))}{" "}
     </>
   );
 }
 
-const StarRating: React.FC<ResultProps> = ({
+const StarRating: React.FC<StarRatingProps> = ({
   percentage,
   totalStars,
-}: ResultProps) => {
+}: StarRatingProps) => {
   const rating = percentage * totalStars;
-  const fullStarsLength = Math.floor(rating);
-  const halfStarLength = rating - fullStarsLength > 0.5 ? 1 : 0;
-  const emptyStarsLength = totalStars - fullStarsLength - halfStarLength;
+  const fullStarsLength: number = Math.floor(rating);
+  const halfStarLength: number = rating - fullStarsLength > 0.5 ? 1 : 0;
+  const emptyStarsLength: number =
+    totalStars - fullStarsLength - halfStarLength;
   return (
-    <Box m="auto" flex>
+    <Box m="auto">
       {renderFullStars(fullStarsLength)}
       {renderHalfStars(halfStarLength)}
       {renderEmptyStars(emptyStarsLength)}
