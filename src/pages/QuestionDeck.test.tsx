@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { QuestionType } from "../types";
+import { QuestionType } from "../api/questionApi";
 import QuestionDeck from "./QuestionDeck";
-import qapi from "../api/qapi";
+import qapi from "../api/questionApi";
 
 describe("QuestionDeck", () => {
   let testComponent: React.ReactElement;

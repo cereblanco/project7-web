@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import { Box, Paper, Typography } from "@material-ui/core";
 
-import qapi from "../api/qapi";
-import { QuestionApiResponse } from "../types";
+import qapi from "../api/questionApi";
+import { QuestionApiResponse } from "../api/types";
 
-import Question from "../components/Question";
-import Result from "../components/Result";
+import Question from "../components/multiplechoice/Question";
+import Result from "../components/scores/Result";
 
 const QuestionDeck: React.FC = () => {
   const [total, setTotal] = useState<number>(0);
