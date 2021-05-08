@@ -1,5 +1,5 @@
 import questions from "./questions";
-import { QuestionApiResponse } from "../types";
+import { QuestionApiResponse } from "./types";
 
 type QuestionType = {
   id: number;
