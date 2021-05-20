@@ -1,0 +1,19 @@
+name: Build and Deploy to Github Pages
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install and Build
+      run: |
+        yarn install
+        yarn build
+
+    - name: Deploy to Github Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.3
+      with:
+        branch: gh-pages
+        folder: Build
