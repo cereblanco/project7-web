@@ -12,7 +12,7 @@ const Answer: React.FC<AnswerProps> = ({ text, visible }: AnswerProps) => {
   return (
     <Box>
       <Typography variant="subtitle1">ANSWER</Typography>
-      <Typography variant="h6">{text}</Typography>
+      <Typography variant="h4">{text}</Typography>
     </Box>
   );
 };

@@ -48,6 +48,7 @@ const Question: React.FC<QuestionProps> = ({
       aria-label="submit"
       variant="contained"
       color="primary"
+      size="medium"
       onClick={onSubmit}
     >
       Submit
@@ -57,6 +58,7 @@ const Question: React.FC<QuestionProps> = ({
       aria-label="next"
       variant="contained"
       color="primary"
+      size="medium"
       onClick={onNext}
     >
       Next
@@ -66,30 +68,24 @@ const Question: React.FC<QuestionProps> = ({
   return (
     <>
       <Box marginY={2}>
-        <Typography variant="h4">{question}</Typography>
+        <Typography variant="h4" align="justify">
+          {question}
+        </Typography>
       </Box>
-      <Grid>
-        <Grid container>
-          <Grid item xs={8}>
-            <Choices
-              choices={choices}
-              onChange={onChange}
-              disabled={!isActive}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Cheers positive={isCorrect} visible={!isActive} />
-            <Answer text={answer} visible={!isActive && !isCorrect} />
-          </Grid>
+      <br />
+      <Grid container>
+        <Grid item xs={7}>
+          <Choices choices={choices} onChange={onChange} disabled={!isActive} />
+        </Grid>
+        <Grid item xs={5}>
+          <Cheers visible={!isActive} positive={isCorrect} />
+          <Answer text={answer} visible={!isActive && !isCorrect} />
         </Grid>
       </Grid>
-      <Grid
-        container
-        alignItems="flex-start"
-        justify="flex-end"
-        direction="row"
-      >
-        <Box marginTop={4}>{activeBtn}</Box>
+      <br />
+      <br />
+      <Grid container justifyContent="flex-end" alignItems="flex-end">
+        {activeBtn}
       </Grid>
     </>
   );

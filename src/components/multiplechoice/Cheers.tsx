@@ -4,12 +4,11 @@ import { Cancel, CheckCircle } from "@material-ui/icons";
 
 const cheers: ReadonlyArray<string> = [
   "Awesome!",
-  "Cool!",
   "Good job!",
   "Great!",
-  "Nice!",
+  "Correct!",
   "Keep up the good work!",
-  "Sweet!",
+  "You got it right!",
 ];
 
 type CheersProps = { positive: boolean; visible: boolean };
@@ -21,12 +20,10 @@ const Cheers: React.FC<CheersProps> = ({ positive, visible }: CheersProps) => {
 
   if (positive) {
     return (
-      <Box alignItems="center" justifyContent="center">
-        <CheckCircle style={{ fontSize: 60 }} color="primary" />
-        <Box fontStyle="italic">
-          <Typography variant="h6">{cheers[randomIndex]}</Typography>
-        </Box>
-      </Box>
+      <>
+        <CheckCircle width="100%" style={{ fontSize: 70 }} color="primary" />
+        <Typography variant="h5">{cheers[randomIndex]}</Typography>
+      </>
     );
   }
 

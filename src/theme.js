@@ -1,6 +1,6 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   root: {
     display: "flex",
   },
@@ -24,7 +24,7 @@ const theme = createMuiTheme({
       main: "#f9a73e",
     },
     background: {
-      default: "#f9a73e",
+      default: "#b2dfdb",
     },
   },
 });
