@@ -1,4 +1,4 @@
-name: React CI
+name: Tests
 on:
   push:
     branches:

@@ -1,6 +1,6 @@
 # About Project7-Web
 
-![React-CI](https://github.com/cereblanco/project7-web/workflows/React-CI/badge.svg)
+![Tests](https://github.com/cereblanco/project7-web/workflows/React-CI/badge.svg)
 
 Features:
 
