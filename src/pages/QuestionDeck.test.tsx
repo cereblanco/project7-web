@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { QuestionType } from "../api/questionApi";
+import { QuestionType } from "../api/types";
 import QuestionDeck from "./QuestionDeck";
 import qapi from "../api/questionApi";
 

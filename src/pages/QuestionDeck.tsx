@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Paper, Typography } from "@material-ui/core";
 
 import qapi from "../api/questionApi";
-import { QuestionApiResponse } from "../api/types";
+import { QuestionType } from "../api/types";
 
 import Question from "../components/multiplechoice/Question";
 import Result from "../components/scores/Result";
@@ -13,7 +13,7 @@ const QuestionDeck: React.FC = () => {
   const [count, setCounter] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
-  const [question, setQuestion] = useState<QuestionApiResponse>(null);
+  const [question, setQuestion] = useState<QuestionType | null>(null);
 
   useEffect(() => {
     function fetchQuestion(): void {
