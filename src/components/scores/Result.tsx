@@ -21,18 +21,15 @@ const Result: React.FC<ResultProps> = ({ score, total }: ResultProps) => {
     <Paper>
       <Box height="80vh" display="flex" justifyContent="center">
         <Box my={10} textAlign="center">
-          <Box fontStyle="italic">
-            <Typography variant="h6" color="textSecondary">
-              {message}
-            </Typography>
-          </Box>
-          <Box>
-            <StarRating percentage={percentage} totalStars={TOTAL_STARS} />
-          </Box>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="h4" color="textSecondary">
+            {message}
+          </Typography>
+          <StarRating percentage={percentage} totalStars={TOTAL_STARS} />
+          <br />
+          <Typography variant="h5" color="textSecondary">
             Your final score is
           </Typography>
-          <Typography variant="h4" color="textPrimary">
+          <Typography style={{ fontSize: 60 }} color="textSecondary">
             {`${score} / ${total}`}{" "}
           </Typography>
         </Box>

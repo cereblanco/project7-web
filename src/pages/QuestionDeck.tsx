@@ -54,11 +54,12 @@ const QuestionDeck: React.FC = () => {
     <Paper>
       <Box height="80vh" padding={4}>
         <Box textAlign="right">
-          <Typography variant="h4">
+          <Typography variant="h3">
             {" "}
             {count + 1} / {total}{" "}
           </Typography>
         </Box>
+        <br />
         <Box height="75%">
           {question ? (
             <Question

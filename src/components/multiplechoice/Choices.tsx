@@ -3,6 +3,14 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  label: {
+    fontSize: theme.typography.pxToRem(24),
+    color: "#263238",
+  },
+}));
 
 export type ChoicesProps = {
   choices: ReadonlyArray<string>;
@@ -15,6 +23,7 @@ const Choices: React.FC<ChoicesProps> = ({
   onChange,
   disabled,
 }: ChoicesProps) => {
+  const classes = useStyles();
   const [value, setValue] = React.useState("");
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +49,7 @@ const Choices: React.FC<ChoicesProps> = ({
             control={<Radio />}
             color="primary"
             label={value}
+            classes={classes}
           />
         ))}
       </RadioGroup>

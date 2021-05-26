@@ -19,8 +19,7 @@ function renderFullStars(length: number): React.ReactElement | null {
         .map((_, index) => (
           <Star
             aria-label="full-star"
-            style={{ color: "orange" }}
-            fontSize="large"
+            style={{ color: "orange", fontSize: 50 }}
             key={`full-star-${index}`}
           />
         ))}{" "}
@@ -38,7 +37,7 @@ function renderHalfStars(length: number): React.ReactElement | null {
         .map((_, index) => (
           <StarHalf
             aria-label="half-star"
-            style={{ color: "orange" }}
+            style={{ color: "orange", fontSize: 50 }}
             color="primary"
             key={`half-star-${index}`}
           />
@@ -57,7 +56,7 @@ function renderEmptyStars(length: number): React.ReactElement | null {
         .map((_, index) => (
           <StarOutlined
             aria-label="empty-star"
-            style={{ color: "gray" }}
+            style={{ color: "gray", fontSize: 50 }}
             key={`empty-star-${index}`}
           />
         ))}{" "}
