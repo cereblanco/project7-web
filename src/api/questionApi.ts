@@ -1,15 +1,8 @@
 import questions from "./questions";
-import { QuestionApiResponse } from "./types";
-
-type QuestionType = {
-  id: number;
-  question: string;
-  choices: string[];
-  answer: string;
-};
+import { QuestionType } from "./types";
 
 //TODO: Replace this with real backend
-function getQuestion(index: number): QuestionApiResponse {
+function getQuestion(index: number): QuestionType | null {
   if (index <= questions.length) {
     return questions[index];
   }
