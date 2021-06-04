@@ -8,7 +8,7 @@ import { QuestionType } from "../api/types";
 import Question from "../components/multiplechoice/Question";
 import Result from "../components/scores/Result";
 
-const QuestionDeck: React.FC = () => {
+const MultipleChoiceDeck: React.FC = () => {
   const [total, setTotal] = useState<number>(0);
   const [count, setCounter] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -74,4 +74,4 @@ const QuestionDeck: React.FC = () => {
   );
 };
 
-export default QuestionDeck;
+export default MultipleChoiceDeck;

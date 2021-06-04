@@ -4,10 +4,10 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { QuestionType } from "../api/types";
-import QuestionDeck from "./QuestionDeck";
+import MultipleChoiceDeck from "./MultipleChoiceDeck";
 import qapi from "../api/questionApi";
 
-describe("QuestionDeck", () => {
+describe("MultipleChoiceDeck", () => {
   let testComponent: React.ReactElement;
   let getQuestionStub: jest.SpyInstance;
   let getTotalNumberOfQuestionsStub: jest.SpyInstance;
@@ -35,7 +35,7 @@ describe("QuestionDeck", () => {
       .spyOn(qapi, "getTotalNumberOfQuestions")
       .mockReturnValue(questions.length);
 
-    testComponent = <QuestionDeck />;
+    testComponent = <MultipleChoiceDeck />;
   });
 
   it("renders without crashing", () => {
