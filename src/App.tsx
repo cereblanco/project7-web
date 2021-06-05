@@ -8,7 +8,6 @@ import MultipleChoiceDeck from "./pages/MultipleChoiceDeck";
 const App: React.FC = () => {
   return (
     <Container maxWidth="sm">
-      <CssBaseline />
       <Box my={10}>
         <MultipleChoiceDeck />
       </Box>
