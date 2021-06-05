@@ -1,5 +1,8 @@
 {
   "name": "project7-web",
+  "repository": "git@github.com:cereblanco/project7-web.git",
+  "author": "cereblanco@gmail.com",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://cereblanco.github.io/project7-web/",
