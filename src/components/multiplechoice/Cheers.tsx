@@ -7,7 +7,6 @@ const cheers: ReadonlyArray<string> = [
   "Good job!",
   "Great!",
   "Correct!",
-  "Keep up the good work!",
   "You got it right!",
 ];
 

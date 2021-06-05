@@ -68,23 +68,26 @@ const Question: React.FC<QuestionProps> = ({
   return (
     <>
       <Box marginY={2}>
-        <Typography variant="h4" align="justify">
+        <Typography variant="h4" align="left">
           {question}
         </Typography>
       </Box>
       <br />
-      <Grid container>
-        <Grid item xs={7}>
+      <Grid container justifyContent="space-between" height="100%">
+        <Grid item>
           <Choices choices={choices} onChange={onChange} disabled={!isActive} />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item alignSelf="center" flex="shrink" paddingRight={10}>
           <Cheers visible={!isActive} positive={isCorrect} />
           <Answer text={answer} visible={!isActive && !isCorrect} />
         </Grid>
       </Grid>
-      <br />
-      <br />
-      <Grid container justifyContent="flex-end" alignItems="flex-end">
+      <Grid
+        container
+        justifyContent="flex-end"
+        alignItems="flex-end"
+        paddingY={5}
+      >
         {activeBtn}
       </Grid>
     </>

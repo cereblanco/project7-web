@@ -52,7 +52,7 @@ const MultipleChoiceDeck: React.FC = () => {
 
   return (
     <Paper>
-      <Box height="80vh" padding={4}>
+      <Box minHeight="80vh" padding={4}>
         <Box textAlign="right">
           <Typography variant="h3">
             {" "}
@@ -60,7 +60,7 @@ const MultipleChoiceDeck: React.FC = () => {
           </Typography>
         </Box>
         <br />
-        <Box height="75%">
+        <Box marginBottom={2}>
           {question ? (
             <Question
               {...question}
