@@ -11,7 +11,7 @@ describe("MultipleChoiceDeck", () => {
   let testComponent: React.ReactElement;
   let fetchSetQuestionsStub: jest.SpyInstance;
 
-  const questions: MultipleChoiceType[] = [
+  const questions: ReadonlyArray<MultipleChoiceType> = [
     {
       id: 1,
       question: "Question 1",

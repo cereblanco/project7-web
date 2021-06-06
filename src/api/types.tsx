@@ -18,8 +18,12 @@ export type MultipleChoiceType = {
   answer: string;
 };
 
-export type SetQuestions = MultipleChoiceType[] | FillInTheBlanksType[];
+export type SetQuestions =
+  | ReadonlyArray<MultipleChoiceType>
+  | ReadonlyArray<FillInTheBlanksType>;
+
 export type SingleQuestion = MultipleChoiceType | FillInTheBlanksType;
+
 export type QuestionsPool = {
   id: number;
   questionType: QuestionType;

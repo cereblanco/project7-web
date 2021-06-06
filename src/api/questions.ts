@@ -1,6 +1,6 @@
 import { QuestionType, QuestionsPool } from "./types";
 
-const questions: QuestionsPool[] = [
+const questions: ReadonlyArray<QuestionsPool> = [
   {
     id: 1,
     questionType: QuestionType.MULTIPLE_CHOICE,
