@@ -1,48 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Box, Paper, Typography } from "@material-ui/core";
-
-import qapi from "../api/questionApi";
-import { QuestionType } from "../api/types";
-
 import Question from "../components/multiplechoice/Question";
 import Result from "../components/scores/Result";
 
+import useQuestionApi from "../hooks/useQuestionApi";
+import useScore from "../hooks/useScore";
+
 const MultipleChoiceDeck: React.FC = () => {
-  const [total, setTotal] = useState<number>(0);
-  const [count, setCounter] = useState<number>(0);
-  const [score, setScore] = useState<number>(0);
+  const { count, total, question, onNextQuestion } = useQuestionApi();
+  const { score, incrementScore } = useScore();
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
-  const [question, setQuestion] = useState<QuestionType | null>(null);
 
-  useEffect(() => {
-    function fetchQuestion(): void {
-      const question = qapi.getQuestion(0);
-      setQuestion(question);
-    }
-    fetchQuestion();
-  }, []);
-
-  useEffect(() => {
-    async function fetchTotalNumberOfQuestion(): Promise<void> {
-      const total = qapi.getTotalNumberOfQuestions();
-      setTotal(total);
-    }
-    fetchTotalNumberOfQuestion();
-  }, []);
-
-  const onNextQuestion = (): void => {
+  const onNext = (): void => {
     if (count === total - 1) {
       setIsCompleted(true);
     }
-    const counter = count + 1;
-    setCounter(counter);
-    setQuestion(qapi.getQuestion(counter));
+    onNextQuestion();
   };
 
-  const onSubmitQuestion = (increment: number): void => {
+  const onSubmit = (point: number): void => {
     if (count <= total - 1) {
-      setScore(score + increment);
+      incrementScore({ value: point });
     }
   };
 
@@ -64,8 +43,8 @@ const MultipleChoiceDeck: React.FC = () => {
           {question ? (
             <Question
               {...question}
-              onNextQuestion={onNextQuestion}
-              onSubmitQuestion={onSubmitQuestion}
+              onNextQuestion={onNext}
+              onSubmitQuestion={onSubmit}
             />
           ) : null}
         </Box>
