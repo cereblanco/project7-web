@@ -7,10 +7,13 @@ const fetchSetQuestions = (
   questionType: QuestionType
 ): SetQuestions => {
   const pool = questionsPool.find((q: QuestionsPool) => q.id === id);
-  if (pool === undefined) throw "No question found!";
-  else if (pool.questionType !== questionType)
+  if (pool === undefined) {
+    throw "No question found!";
+  } else if (pool.questionType !== questionType) {
     throw "Question type doesn't match!";
-  else return pool.questions;
+  } else {
+    return pool.questions;
+  }
 };
 
 export default { fetchSetQuestions };

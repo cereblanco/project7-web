@@ -1,8 +1,6 @@
-import React from "react";
-
 import { Box } from "@material-ui/core";
-
 import { Star, StarHalf, StarOutlined } from "@material-ui/icons";
+import React from "react";
 
 export type StarRatingProps = {
   percentage: number;
@@ -10,7 +8,9 @@ export type StarRatingProps = {
 };
 
 function renderFullStars(length: number): React.ReactElement | null {
-  if (length === 0) return null;
+  if (length === 0) {
+    return null;
+  }
   return (
     <>
       {" "}
@@ -28,7 +28,9 @@ function renderFullStars(length: number): React.ReactElement | null {
 }
 
 function renderHalfStars(length: number): React.ReactElement | null {
-  if (length === 0) return null;
+  if (length === 0) {
+    return null;
+  }
   return (
     <>
       {" "}
@@ -47,7 +49,9 @@ function renderHalfStars(length: number): React.ReactElement | null {
 }
 
 function renderEmptyStars(length: number): React.ReactElement | null {
-  if (length === 0) return null;
+  if (length === 0) {
+    return null;
+  }
   return (
     <>
       {" "}

@@ -7,14 +7,14 @@ export type FillInTheBlanksType = {
   id: number;
   instructions: string;
   question: string;
-  choices: string[];
-  answers: string[];
+  choices: Array<string>;
+  answers: Array<string>;
 };
 
 export type MultipleChoiceType = {
   id: number;
   question: string;
-  choices: string[];
+  choices: Array<string>;
   answer: string;
 };
 

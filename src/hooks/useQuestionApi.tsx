@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import { SingleQuestion, QuestionType, SetQuestions } from "../api/types";
 import questionApi from "../api/questionApi";
+import { SingleQuestion, QuestionType, SetQuestions } from "../api/types";
 
 type useQuestionApiReturnType = {
   currentCount: number;
@@ -34,7 +34,7 @@ const useQuestionApi = ({
       setTotalQuestions(questions.length);
     }
     fetchSetQuestions();
-  }, []);
+  }, [questionId, questionType]);
 
   const onNextQuestion = (): void => {
     const nextItem: number = currentCount + 1;

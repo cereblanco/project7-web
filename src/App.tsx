@@ -1,6 +1,5 @@
-import React from "react";
-
 import { Box, Container } from "@material-ui/core";
+import React from "react";
 
 import MultipleChoiceDeck from "./pages/MultipleChoiceDeck";
 

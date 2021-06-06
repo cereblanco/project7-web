@@ -1,7 +1,6 @@
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import ReactDOM from "react-dom";
-
-import { render, screen } from "@testing-library/react";
 
 import StarRating, { StarRatingProps } from "./StarRating";
 
@@ -25,7 +24,7 @@ describe("Star rating", () => {
   it("renders the star ratings correctly", () => {
     render(testComponent);
     expect(screen.queryAllByLabelText("full-star")).toHaveLength(5);
-    expect(screen.queryAllByLabelText("half-star")).toHaveLength(0);
-    expect(screen.queryAllByLabelText("empty-star")).toHaveLength(0);
+    expect(screen.queryByLabelText("half-star")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("empty-star")).not.toBeInTheDocument();
   });
 });
