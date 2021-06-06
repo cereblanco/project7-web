@@ -1,43 +1,48 @@
 import { useState, useEffect } from "react";
 
+import { SingleQuestion, QuestionType, SetQuestions } from "../api/types";
 import questionApi from "../api/questionApi";
-import { QuestionType } from "../api/types";
 
 type useQuestionApiReturnType = {
   currentCount: number;
   totalQuestions: number;
-  question: QuestionType | null;
+  currentQuestion: SingleQuestion | null;
   onNextQuestion: () => void;
 };
 
-const useQuestionApi = (): useQuestionApiReturnType => {
+type useQuestionApiProps = {
+  questionId: number;
+  questionType: QuestionType;
+};
+
+const useQuestionApi = ({
+  questionId,
+  questionType,
+}: useQuestionApiProps): useQuestionApiReturnType => {
   const [currentCount, setCurrentCount] = useState<number>(0);
+  const [currentQuestion, setCurrentQuestion] =
+    useState<SingleQuestion | null>(null);
+
   const [totalQuestions, setTotalQuestions] = useState<number>(0);
-  const [question, setQuestion] = useState<QuestionType | null>(null);
+  const [questions, setQuestions] = useState<SetQuestions>([]);
+
+  useEffect(() => {
+    function fetchSetQuestions(): void {
+      const questions = questionApi.fetchSetQuestions(questionId, questionType);
+      setQuestions(questions);
+      setCurrentQuestion(questions[0]);
+      setTotalQuestions(questions.length);
+    }
+    fetchSetQuestions();
+  }, []);
 
   const onNextQuestion = (): void => {
     const nextItem: number = currentCount + 1;
     setCurrentCount(nextItem);
-    setQuestion(questionApi.getQuestion(nextItem));
+    setCurrentQuestion(questions[nextItem]);
   };
 
-  useEffect(() => {
-    function fetchQuestion(): void {
-      const question = questionApi.getQuestion(0);
-      setQuestion(question);
-    }
-    fetchQuestion();
-  }, []);
-
-  useEffect(() => {
-    function fetchTotalNumberOfQuestion(): void {
-      const totalQuestions = questionApi.getTotalNumberOfQuestions();
-      setTotalQuestions(totalQuestions);
-    }
-    fetchTotalNumberOfQuestion();
-  }, []);
-
-  return { currentCount, totalQuestions, question, onNextQuestion };
+  return { currentCount, currentQuestion, totalQuestions, onNextQuestion };
 };
 
 export default useQuestionApi;
