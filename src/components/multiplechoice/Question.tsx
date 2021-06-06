@@ -13,7 +13,6 @@ export type QuestionProps = {
   answer: string;
   onNextQuestion: () => void;
   onSubmitQuestion: (increment: number) => void;
-  instructions?: string;
 };
 
 const Question: React.FC<QuestionProps> = ({
