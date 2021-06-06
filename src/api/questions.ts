@@ -107,7 +107,7 @@ const questions: ReadonlyArray<QuestionsPool> = [
     questions: [
       {
         id: 166,
-        instructions: `Fill in the blanks with the correct preposition`,
+        instructions: `Fill in the blanks with the correct prepositions`,
         question: `
         _ Monday, September 5, I have a very important meeting to preside over 
         _ 9:00 in the morning. I have to conduct the meeting 
