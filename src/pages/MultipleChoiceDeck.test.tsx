@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 import { QuestionType } from "../api/types";
 import MultipleChoiceDeck from "./MultipleChoiceDeck";
-import qapi from "../api/questionApi";
+import questionApi from "../api/questionApi";
 
 describe("MultipleChoiceDeck", () => {
   let testComponent: React.ReactElement;
@@ -29,10 +29,10 @@ describe("MultipleChoiceDeck", () => {
 
   beforeEach(() => {
     getQuestionStub = jest
-      .spyOn(qapi, "getQuestion")
+      .spyOn(questionApi, "getQuestion")
       .mockReturnValue(questions[0]);
     getTotalNumberOfQuestionsStub = jest
-      .spyOn(qapi, "getTotalNumberOfQuestions")
+      .spyOn(questionApi, "getTotalNumberOfQuestions")
       .mockReturnValue(questions.length);
 
     testComponent = <MultipleChoiceDeck />;
