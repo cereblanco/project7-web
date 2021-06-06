@@ -4,21 +4,21 @@ import questionApi from "../api/questionApi";
 import { QuestionType } from "../api/types";
 
 type useQuestionApiReturnType = {
-  count: number;
-  total: number;
+  currentCount: number;
+  totalQuestions: number;
   question: QuestionType | null;
   onNextQuestion: () => void;
 };
 
 const useQuestionApi = (): useQuestionApiReturnType => {
-  const [total, setTotal] = useState<number>(0);
-  const [count, setCounter] = useState<number>(0);
+  const [currentCount, setCurrentCount] = useState<number>(0);
+  const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [question, setQuestion] = useState<QuestionType | null>(null);
 
   const onNextQuestion = (): void => {
-    const counter = count + 1;
-    setCounter(counter);
-    setQuestion(questionApi.getQuestion(counter));
+    const nextItem: number = currentCount + 1;
+    setCurrentCount(nextItem);
+    setQuestion(questionApi.getQuestion(nextItem));
   };
 
   useEffect(() => {
@@ -31,13 +31,13 @@ const useQuestionApi = (): useQuestionApiReturnType => {
 
   useEffect(() => {
     function fetchTotalNumberOfQuestion(): void {
-      const total = questionApi.getTotalNumberOfQuestions();
-      setTotal(total);
+      const totalQuestions = questionApi.getTotalNumberOfQuestions();
+      setTotalQuestions(totalQuestions);
     }
     fetchTotalNumberOfQuestion();
   }, []);
 
-  return { count, total, question, onNextQuestion };
+  return { currentCount, totalQuestions, question, onNextQuestion };
 };
 
 export default useQuestionApi;

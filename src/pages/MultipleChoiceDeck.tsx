@@ -8,25 +8,26 @@ import useQuestionApi from "../hooks/useQuestionApi";
 import useScore from "../hooks/useScore";
 
 const MultipleChoiceDeck: React.FC = () => {
-  const { count, total, question, onNextQuestion } = useQuestionApi();
+  const { currentCount, totalQuestions, question, onNextQuestion } =
+    useQuestionApi();
   const { score, incrementScore } = useScore();
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
   const onNext = (): void => {
-    if (count === total - 1) {
+    if (currentCount === totalQuestions - 1) {
       setIsCompleted(true);
     }
     onNextQuestion();
   };
 
   const onSubmit = (point: number): void => {
-    if (count <= total - 1) {
+    if (currentCount <= totalQuestions - 1) {
       incrementScore({ value: point });
     }
   };
 
   if (isCompleted) {
-    return <Result score={score} total={total} />;
+    return <Result score={score} total={totalQuestions} />;
   }
 
   return (
@@ -35,7 +36,7 @@ const MultipleChoiceDeck: React.FC = () => {
         <Box textAlign="right">
           <Typography variant="h3">
             {" "}
-            {count + 1} / {total}{" "}
+            {currentCount + 1} / {totalQuestions}{" "}
           </Typography>
         </Box>
         <br />
