@@ -9,7 +9,7 @@ import questionApi from "../api/questionApi";
 
 describe("MultipleChoiceDeck", () => {
   let testComponent: React.ReactElement;
-  let fetchQuestionStub: jest.SpyInstance;
+  let fetchSetQuestionsStub: jest.SpyInstance;
 
   const questions: MultipleChoiceType[] = [
     {
@@ -27,8 +27,8 @@ describe("MultipleChoiceDeck", () => {
   ];
 
   beforeEach(() => {
-    fetchQuestionStub = jest
-      .spyOn(questionApi, "fetchQuestion")
+    fetchSetQuestionsStub = jest
+      .spyOn(questionApi, "fetchSetQuestions")
       .mockReturnValue(questions);
     testComponent = <MultipleChoiceDeck />;
   });
@@ -41,7 +41,7 @@ describe("MultipleChoiceDeck", () => {
 
   it("shows first question from api", () => {
     render(testComponent);
-    expect(fetchQuestionStub).toHaveBeenCalledTimes(1);
+    expect(fetchSetQuestionsStub).toHaveBeenCalledTimes(1);
 
     expect(screen.getByText("1 / 2")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "submit" })).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe("MultipleChoiceDeck", () => {
 
   it("retrieves and displays next item", () => {
     render(testComponent);
-    expect(fetchQuestionStub).toHaveBeenCalledTimes(1);
+    expect(fetchSetQuestionsStub).toHaveBeenCalledTimes(1);
     userEvent.click(screen.getByRole("button", { name: "submit" }));
     userEvent.click(screen.getByRole("button", { name: "next" }));
     expect(screen.getByText("2 / 2")).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe("MultipleChoiceDeck", () => {
 
   it("shows final score", () => {
     render(testComponent);
-    expect(fetchQuestionStub).toHaveBeenCalledTimes(1);
+    expect(fetchSetQuestionsStub).toHaveBeenCalledTimes(1);
     userEvent.click(screen.getByRole("button", { name: "submit" }));
     userEvent.click(screen.getByRole("button", { name: "next" }));
     userEvent.click(screen.getByRole("button", { name: "submit" }));

@@ -27,13 +27,13 @@ const useQuestionApi = ({
   const [questions, setQuestions] = useState<SetQuestions>([]);
 
   useEffect(() => {
-    function fetchQuestion(): void {
-      const questions = questionApi.fetchQuestion(questionId, questionType);
+    function fetchSetQuestions(): void {
+      const questions = questionApi.fetchSetQuestions(questionId, questionType);
       setQuestions(questions);
       setCurrentQuestion(questions[0]);
       setTotalQuestions(questions.length);
     }
-    fetchQuestion();
+    fetchSetQuestions();
   }, []);
 
   const onNextQuestion = (): void => {

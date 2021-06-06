@@ -2,7 +2,7 @@ import questions from "./questions";
 import { SetQuestions, QuestionsPool, QuestionType } from "./types";
 
 //TODO: Replace this with real backend
-const fetchQuestion = (
+const fetchSetQuestions = (
   id: number,
   questionType: QuestionType
 ): SetQuestions => {
@@ -13,4 +13,4 @@ const fetchQuestion = (
   else return pool.questions;
 };
 
-export default { fetchQuestion };
+export default { fetchSetQuestions };
