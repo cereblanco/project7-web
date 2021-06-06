@@ -1,6 +1,6 @@
 import { QuestionType, QuestionsPool } from "./types";
 
-const questions: ReadonlyArray<QuestionsPool> = [
+const questionsPool: ReadonlyArray<QuestionsPool> = [
   {
     id: 1,
     questionType: QuestionType.MULTIPLE_CHOICE,
@@ -127,4 +127,4 @@ const questions: ReadonlyArray<QuestionsPool> = [
   },
 ];
 
-export default questions;
+export default questionsPool;
