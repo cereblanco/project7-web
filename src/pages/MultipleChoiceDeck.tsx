@@ -4,12 +4,19 @@ import { Box, Paper, Typography } from "@material-ui/core";
 import Question from "../components/multiplechoice/Question";
 import Result from "../components/scores/Result";
 
+import { MultipleChoiceType, QuestionType } from "../api/types";
 import useQuestionApi from "../hooks/useQuestionApi";
 import useScore from "../hooks/useScore";
 
+const DEMO_QUESTION_ID = 1;
+const DEMO_QUESTION_TYPE = QuestionType.MULTIPLE_CHOICE;
+
 const MultipleChoiceDeck: React.FC = () => {
-  const { currentCount, totalQuestions, question, onNextQuestion } =
-    useQuestionApi();
+  const { currentCount, totalQuestions, currentQuestion, onNextQuestion } =
+    useQuestionApi({
+      questionId: DEMO_QUESTION_ID,
+      questionType: DEMO_QUESTION_TYPE,
+    });
   const { score, incrementScore } = useScore();
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
@@ -41,9 +48,9 @@ const MultipleChoiceDeck: React.FC = () => {
         </Box>
         <br />
         <Box marginBottom={2}>
-          {question ? (
+          {currentQuestion ? (
             <Question
-              {...question}
+              {...(currentQuestion as MultipleChoiceType)}
               onNextQuestion={onNext}
               onSubmitQuestion={onSubmit}
             />

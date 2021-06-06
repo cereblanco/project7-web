@@ -3,16 +3,15 @@ import ReactDOM from "react-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { QuestionType } from "../api/types";
+import { MultipleChoiceType } from "../api/types";
 import MultipleChoiceDeck from "./MultipleChoiceDeck";
 import questionApi from "../api/questionApi";
 
 describe("MultipleChoiceDeck", () => {
   let testComponent: React.ReactElement;
-  let getQuestionStub: jest.SpyInstance;
-  let getTotalNumberOfQuestionsStub: jest.SpyInstance;
+  let fetchQuestionStub: jest.SpyInstance;
 
-  const questions: ReadonlyArray<QuestionType> = [
+  const questions: MultipleChoiceType[] = [
     {
       id: 1,
       question: "Question 1",
@@ -28,13 +27,9 @@ describe("MultipleChoiceDeck", () => {
   ];
 
   beforeEach(() => {
-    getQuestionStub = jest
-      .spyOn(questionApi, "getQuestion")
-      .mockReturnValue(questions[0]);
-    getTotalNumberOfQuestionsStub = jest
-      .spyOn(questionApi, "getTotalNumberOfQuestions")
-      .mockReturnValue(questions.length);
-
+    fetchQuestionStub = jest
+      .spyOn(questionApi, "fetchQuestion")
+      .mockReturnValue(questions);
     testComponent = <MultipleChoiceDeck />;
   });
 
@@ -46,8 +41,7 @@ describe("MultipleChoiceDeck", () => {
 
   it("shows first question from api", () => {
     render(testComponent);
-    expect(getQuestionStub).toHaveBeenCalledTimes(1);
-    expect(getTotalNumberOfQuestionsStub).toHaveBeenCalledTimes(1);
+    expect(fetchQuestionStub).toHaveBeenCalledTimes(1);
 
     expect(screen.getByText("1 / 2")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "submit" })).toBeInTheDocument();
@@ -55,10 +49,19 @@ describe("MultipleChoiceDeck", () => {
 
   it("retrieves and displays next item", () => {
     render(testComponent);
+    expect(fetchQuestionStub).toHaveBeenCalledTimes(1);
     userEvent.click(screen.getByRole("button", { name: "submit" }));
-    getQuestionStub.mockReturnValueOnce(questions[1]);
     userEvent.click(screen.getByRole("button", { name: "next" }));
-    expect(getQuestionStub).toHaveBeenCalledTimes(2);
     expect(screen.getByText("2 / 2")).toBeInTheDocument();
+  });
+
+  it("shows final score", () => {
+    render(testComponent);
+    expect(fetchQuestionStub).toHaveBeenCalledTimes(1);
+    userEvent.click(screen.getByRole("button", { name: "submit" }));
+    userEvent.click(screen.getByRole("button", { name: "next" }));
+    userEvent.click(screen.getByRole("button", { name: "submit" }));
+    userEvent.click(screen.getByRole("button", { name: "next" }));
+    expect(screen.getByText("Your final score is")).toBeInTheDocument();
   });
 });
