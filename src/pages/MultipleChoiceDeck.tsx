@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import { MultipleChoiceType, QuestionType } from "../api/types";
 import Question from "../components/multiplechoice/Question";
-import Result from "../components/scores/Result";
+import Score from "../components/scores/Score";
 import useQuestionApi from "../hooks/useQuestionApi";
 import useScore from "../hooks/useScore";
 
@@ -33,7 +33,7 @@ const MultipleChoiceDeck: React.FC = () => {
   };
 
   if (isCompleted) {
-    return <Result score={score} total={totalQuestions} />;
+    return <Score score={score} total={totalQuestions} />;
   }
 
   return (

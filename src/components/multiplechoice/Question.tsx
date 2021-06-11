@@ -2,7 +2,6 @@ import { Box, Button, Grid, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 
 import Answer from "./Answer";
-import Cheers from "./Cheers";
 import Choices from "./Choices";
 
 export type QuestionProps = {
@@ -77,8 +76,7 @@ const Question: React.FC<QuestionProps> = ({
           <Choices choices={choices} onChange={onChange} disabled={!isActive} />
         </Grid>
         <Grid item alignSelf="center" flex="shrink" paddingRight={10}>
-          <Cheers visible={!isActive} positive={isCorrect} />
-          <Answer text={answer} visible={!isActive && !isCorrect} />
+          <Answer text={answer} visible={!isActive} isCorrect={isCorrect} />
         </Grid>
       </Grid>
       <Grid

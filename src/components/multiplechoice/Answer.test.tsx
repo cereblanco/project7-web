@@ -1,13 +1,14 @@
-import { render, screen } from "@testing-library/react";
 import React from "react";
 import ReactDOM from "react-dom";
+import { render, screen } from "@testing-library/react";
 
 import Answer, { AnswerProps } from "./Answer";
 
 describe("Answer", () => {
   let testComponent: React.ReactElement;
   const testProps: AnswerProps = {
-    text: "Correct Answer!",
+    isCorrect: true,
+    text: "Correct Answer",
     visible: true,
   };
 
@@ -21,13 +22,15 @@ describe("Answer", () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it("renders the answer", () => {
+  it("hides correct answer when isCorrect is true", () => {
     render(testComponent);
-    expect(screen.getByText("Correct Answer!")).toBeInTheDocument();
+    expect(screen.queryByText("ANSWER")).not.toBeInTheDocument();
+    expect(screen.queryByText("Correct Answer")).not.toBeInTheDocument();
   });
 
-  it("hides the answer", () => {
-    render(<Answer text="Correct Answer!" visible={false} />);
-    expect(screen.queryByText("Correct Answer!")).not.toBeInTheDocument();
+  it("shows correct answer when isCorrect is false", () => {
+    render(<Answer {...testProps} isCorrect={false} />);
+    expect(screen.getByText("ANSWER")).toBeInTheDocument();
+    expect(screen.getByText("Correct Answer")).toBeInTheDocument();
   });
 });

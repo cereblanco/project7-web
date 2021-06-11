@@ -9,12 +9,12 @@ const PASSING_RATE = 0.6;
 const PASSED_MESSAGE = "Awesome!";
 const FAILED_MESSAGE = "Sorry! You've failed!";
 
-export type ResultProps = {
+export type ScoreProps = {
   score: number;
   total: number;
 };
 
-const Result: React.FC<ResultProps> = ({ score, total }: ResultProps) => {
+const Score: React.FC<ScoreProps> = ({ score, total }: ScoreProps) => {
   const percentage = score / total;
   const message = percentage >= PASSING_RATE ? PASSED_MESSAGE : FAILED_MESSAGE;
   return (
@@ -38,4 +38,4 @@ const Result: React.FC<ResultProps> = ({ score, total }: ResultProps) => {
   );
 };
 
-export default Result;
+export default Score;
