@@ -10,7 +10,11 @@ const cheers: ReadonlyArray<string> = [
   "You got it right!",
 ];
 
-export type AnswerProps = { isCorrect: boolean; text: string; visible: boolean };
+export type AnswerProps = {
+  isCorrect: boolean;
+  text: string;
+  visible: boolean;
+};
 
 const Answer: React.FC<AnswerProps> = ({
   isCorrect,
