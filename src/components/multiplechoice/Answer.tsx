@@ -21,9 +21,8 @@ const Answer: React.FC<AnswerProps> = ({
     return null;
   }
 
-  const randomIndex: number = Math.floor(Math.random() * cheers.length);
-
   if (isCorrect) {
+    const randomIndex: number = Math.floor(Math.random() * cheers.length);
     return (
       <>
         <CheckCircle width="100%" style={{ fontSize: 70 }} color="primary" />
