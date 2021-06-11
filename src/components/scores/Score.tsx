@@ -7,7 +7,7 @@ const TOTAL_STARS = 5;
 const PASSING_RATE = 0.6;
 
 const PASSED_MESSAGE = "Awesome!";
-const FAILED_MESSAGE = "Sorry! Try again!";
+const FAILED_MESSAGE = "Oops! Try again!";
 
 export type ScoreProps = {
   score: number;
