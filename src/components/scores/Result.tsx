@@ -1,6 +1,6 @@
+import { Box, Paper, Typography } from "@material-ui/core";
 import React from "react";
 
-import { Box, Paper, Typography } from "@material-ui/core";
 import StarRating from "./StarRating";
 
 const TOTAL_STARS = 5;

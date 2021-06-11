@@ -1,6 +1,6 @@
-import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { Cancel, CheckCircle } from "@material-ui/icons";
+import React from "react";
 
 const cheers: ReadonlyArray<string> = [
   "Awesome!",
@@ -13,7 +13,9 @@ const cheers: ReadonlyArray<string> = [
 type CheersProps = { positive: boolean; visible: boolean };
 
 const Cheers: React.FC<CheersProps> = ({ positive, visible }: CheersProps) => {
-  if (!visible) return null;
+  if (!visible) {
+    return null;
+  }
 
   const randomIndex: number = Math.floor(Math.random() * cheers.length);
 

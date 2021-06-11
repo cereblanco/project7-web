@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
 import { Box, Button, Grid, Typography } from "@material-ui/core";
+import React, { useState } from "react";
 
 import Answer from "./Answer";
 import Cheers from "./Cheers";

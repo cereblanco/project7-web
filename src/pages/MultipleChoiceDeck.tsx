@@ -1,10 +1,9 @@
+import { Box, Paper, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 
-import { Box, Paper, Typography } from "@material-ui/core";
+import { MultipleChoiceType, QuestionType } from "../api/types";
 import Question from "../components/multiplechoice/Question";
 import Result from "../components/scores/Result";
-
-import { MultipleChoiceType, QuestionType } from "../api/types";
 import useQuestionApi from "../hooks/useQuestionApi";
 import useScore from "../hooks/useScore";
 

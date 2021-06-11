@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
+import ReactDOM from "react-dom";
 
+import questionApi from "../api/questionApi";
 import { MultipleChoiceType } from "../api/types";
 import MultipleChoiceDeck from "./MultipleChoiceDeck";
-import questionApi from "../api/questionApi";
 
 describe("MultipleChoiceDeck", () => {
   let testComponent: React.ReactElement;

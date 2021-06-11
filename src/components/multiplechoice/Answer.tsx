@@ -1,6 +1,5 @@
-import React from "react";
-
 import { Box, Typography } from "@material-ui/core";
+import React from "react";
 
 export type AnswerProps = {
   text: string;
@@ -8,7 +7,9 @@ export type AnswerProps = {
 };
 
 const Answer: React.FC<AnswerProps> = ({ text, visible }: AnswerProps) => {
-  if (!visible) return null;
+  if (!visible) {
+    return null;
+  }
   return (
     <Box>
       <Typography variant="subtitle1">ANSWER</Typography>
