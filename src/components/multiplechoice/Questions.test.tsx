@@ -52,7 +52,7 @@ describe("Question", () => {
     expect(screen.getByText("Submit")).toBeInTheDocument();
   });
 
-  it("disables choices when clicking submit button", () => {
+  it("disables choices after clicking submit button", () => {
     render(testComponent);
     const selectOne = screen.getByRole("radio", { name: "Andres Bonifacio" });
     userEvent.click(selectOne);
@@ -70,7 +70,7 @@ describe("Question", () => {
     expect(mockOnSubmit).toHaveBeenCalledTimes(1);
   });
 
-  it("shows next button and displays answer when hitting submit button", () => {
+  it("shows next button and displays answer after clicking submit button", () => {
     render(testComponent);
     // selects a choice
     const selectOne = screen.getByRole("radio", { name: "Andres Bonifacio" });
@@ -98,7 +98,7 @@ describe("Question", () => {
     expect(mockOnNext).not.toHaveBeenCalled();
   });
 
-  it("calls onNextQuestion when hitting next button", () => {
+  it("calls onNextQuestion after clicking next button", () => {
     render(testComponent);
     // selects a choice
     const selectOne = screen.getByRole("radio", { name: "Andres Bonifacio" });
