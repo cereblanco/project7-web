@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Answer from "./Answer";
 import Choices from "./Choices";
 
+const DEFAULT_POINTS_PER_QUESTION = 1;
+
 export type QuestionProps = {
   id: number;
   question: string;
@@ -32,7 +34,7 @@ const Question: React.FC<QuestionProps> = ({
     const isCorrect = selectedAnswer === answer;
     setIsCorrect(isCorrect);
     setIsActive(false);
-    onSubmitQuestion(Number(isCorrect));
+    onSubmitQuestion(DEFAULT_POINTS_PER_QUESTION);
   };
 
   const onNext = (): void => {
