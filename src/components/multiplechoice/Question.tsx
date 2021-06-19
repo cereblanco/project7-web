@@ -12,7 +12,7 @@ export type QuestionProps = {
   choices: ReadonlyArray<string>;
   answer: string;
   onNextQuestion: () => void;
-  onSubmitQuestion: (increment: number) => void;
+  onSubmitQuestion: (score: number) => void;
 };
 
 const Question: React.FC<QuestionProps> = ({
