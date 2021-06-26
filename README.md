@@ -1,6 +1,8 @@
 # About Project7-Web
 
 ![Tests](https://github.com/cereblanco/project7-web/workflows/Tests/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<a href="https://www.buymeacoffee.com/cereblanco" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="20"></a>
 
 Quizzes built with React and Material-UI
 
