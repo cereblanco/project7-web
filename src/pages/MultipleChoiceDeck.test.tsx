@@ -15,14 +15,14 @@ describe("MultipleChoiceDeck", () => {
     {
       id: 1,
       question: "Question 1",
-      choices: ["Choice 1.1", "Choice 1.2", "Choice 1.3"],
-      answer: "Choice #3",
+      choices: ["Choice 1", "Choice 2", "Choice 3"],
+      answer: "Choice 1",
     },
     {
       id: 2,
       question: "Question 2",
-      choices: ["Choice 2.1", "Choice 2.2", "Choice 2.3"],
-      answer: "Choice #3",
+      choices: ["Choice 1", "Choice 2", "Choice 3"],
+      answer: "Choice 2",
     },
   ];
 
@@ -55,13 +55,25 @@ describe("MultipleChoiceDeck", () => {
     expect(screen.getByText("2 / 2")).toBeInTheDocument();
   });
 
-  it("shows final score", () => {
+  it("shows correct final score", () => {
     render(testComponent);
     expect(fetchSetQuestionsStub).toHaveBeenCalledTimes(1);
+    // picks correct answer
+    const correctAnswer = screen.getByRole("radio", { name: "Choice 1" });
+    userEvent.click(correctAnswer);
+    expect(correctAnswer).toBeChecked();
     userEvent.click(screen.getByRole("button", { name: "submit" }));
     userEvent.click(screen.getByRole("button", { name: "next" }));
+
+    // selects wrong answer
+    const wrongAnswer = screen.getByRole("radio", { name: "Choice 1" });
+    userEvent.click(wrongAnswer);
+    expect(wrongAnswer).toBeChecked();
     userEvent.click(screen.getByRole("button", { name: "submit" }));
     userEvent.click(screen.getByRole("button", { name: "next" }));
+
+    // Score should be 1/2
     expect(screen.getByText("Your final score is")).toBeInTheDocument();
+    expect(screen.getByText("1 / 2")).toBeInTheDocument();
   });
 });

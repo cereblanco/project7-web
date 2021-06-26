@@ -32,9 +32,10 @@ const Question: React.FC<QuestionProps> = ({
 
   const onSubmit = (): void => {
     const isCorrect = selectedAnswer === answer;
+    const point = isCorrect ? DEFAULT_POINTS_PER_QUESTION : 0;
     setIsCorrect(isCorrect);
     setIsActive(false);
-    onSubmitQuestion(DEFAULT_POINTS_PER_QUESTION);
+    onSubmitQuestion(point);
   };
 
   const onNext = (): void => {
