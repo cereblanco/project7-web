@@ -7,7 +7,7 @@ import StarRating, { StarRatingProps } from "./StarRating";
 describe("Star rating", () => {
   let testComponent: React.ReactElement;
   const testProps: StarRatingProps = {
-    percentage: 1,
+    percentage: 0.3,
     totalStars: 5,
   };
 
@@ -23,8 +23,8 @@ describe("Star rating", () => {
 
   it("renders the star ratings correctly", () => {
     render(testComponent);
-    expect(screen.queryAllByLabelText("full-star")).toHaveLength(5);
-    expect(screen.queryByLabelText("half-star")).not.toBeInTheDocument();
-    expect(screen.queryByLabelText("empty-star")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("full-star")).toBeInTheDocument();
+    expect(screen.queryByLabelText("half-star")).toBeInTheDocument();
+    expect(screen.queryAllByLabelText("empty-star")).toHaveLength(3);
   });
 });
