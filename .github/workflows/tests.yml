@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - github-action
     paths-ignore:
       - "**.md"
   pull_request:
