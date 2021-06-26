@@ -74,7 +74,7 @@ const StarRating: React.FC<StarRatingProps> = ({
 }: StarRatingProps) => {
   const rating = percentage * totalStars;
   const fullStarsLength: number = Math.floor(rating);
-  const halfStarLength: number = rating - fullStarsLength > 0.5 ? 1 : 0;
+  const halfStarLength: number = rating - fullStarsLength >= 0.5 ? 1 : 0;
   const emptyStarsLength: number =
     totalStars - fullStarsLength - halfStarLength;
   return (
