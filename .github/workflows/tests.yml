@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - github-action
     paths-ignore:
       - "**.md"
   pull_request:
@@ -47,3 +48,9 @@ jobs:
 
     - name: Unit tests
       run: yarn ci
+      
+    - name: Run test coverage
+      run: yarn test --watchAll=false --coverage
+
+    - name: Upload coverage to Codecov 
+      uses: codecov/codecov-action@v1
